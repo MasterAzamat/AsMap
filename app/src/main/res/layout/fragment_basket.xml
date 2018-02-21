@@ -1,0 +1,86 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.azaat.asmap.BasketFragment"
+    android:orientation="vertical"
+    android:weightSum="2">
+
+    <!-- TODO: Update blank fragment layout -->
+    <android.support.v7.widget.Toolbar
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        >
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="5">
+            <ImageButton
+                android:id="@+id/backToLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/bt_back"
+                android:background="@color/colorPrimary"
+                android:layout_weight="1"
+                android:layout_gravity="left"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:layout_weight="3"
+                android:text="Корзина"
+                android:textColor="#ffffff"
+                android:textSize="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <ListView
+        android:layout_margin="5dp"
+        android:id="@+id/basket_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <!--<LinearLayout-->
+        <!--android:layout_weight="1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:weightSum="2"-->
+        <!--android:gravity="center"-->
+        <!--&gt;-->
+        <!--<TextView-->
+            <!--android:layout_marginLeft="20dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Общая стоймось 2000тг"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center"-->
+            <!--android:textSize="18dp"-->
+            <!--android:textColor="#000000"/>-->
+        <!--<Button-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:background="@drawable/for_bt"-->
+            <!--android:text="Оформить заказ"-->
+            <!--android:textSize="15dp"-->
+            <!--android:textColor="#ffffff"-->
+            <!--android:layout_weight="1"/>-->
+    <!--</LinearLayout>-->
+
+
+</LinearLayout>

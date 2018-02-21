@@ -1,10 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.Toolbar
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        >
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="5">
+            <ImageButton
+                android:id="@+id/backToLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/bt_back"
+                android:background="@color/colorPrimary"
+                android:layout_weight="1"
+                android:layout_gravity="left"
+                />
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:layout_weight="3"
+                android:text="Регистрация"
+                android:textColor="#ffffff"
+                android:textSize="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.Toolbar>
+    <ScrollView android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="АсМар"
+                android:textSize="40dp"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+
+                android:layout_marginTop="30dp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="55dp"
+                android:layout_marginRight="55dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape"
+                >
+                <EditText
+                    android:inputType="text"
+                    android:id="@+id/registration_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint=" Имя"
+                    android:drawableLeft="@drawable/ic_account_box_black_24dp"
+                    android:textColorHint="@color/userColor"
+                    android:textSize="18dp"
+                    android:background="@drawable/for_et"
+                    android:layout_marginLeft="5dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/userColor"/>
+                <EditText
+                    android:inputType="text"
+                    android:id="@+id/registration_surname"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint=" Фамилия"
+                    android:drawableLeft="@drawable/ic_account_box_black_24dp"
+                    android:textColorHint="@color/userColor"
+                    android:textSize="18dp"
+                    android:background="@drawable/for_et"
+                    android:layout_marginLeft="5dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/userColor"/>
+                <EditText
+                    android:inputType="phone"
+                    android:id="@+id/registration_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint=" Номер телефона"
+                    android:drawableLeft="@drawable/phone"
+                    android:textColorHint="@color/userColor"
+                    android:textSize="18dp"
+                    android:background="@drawable/for_et"
+                    android:layout_marginLeft="5dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/userColor"/>
+                <EditText
+                    android:inputType="text"
+                    android:id="@+id/registration_specialis"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint=" Специализация"
+                    android:drawableLeft="@drawable/spacial"
+                    android:textColorHint="@color/userColor"
+                    android:textSize="18dp"
+                    android:background="@drawable/for_et"
+                    android:layout_marginLeft="5dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/userColor"/>
+                <EditText
+                    android:inputType="textPassword"
+                    android:id="@+id/registration_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint=" Пороль"
+                    android:drawableLeft="@drawable/password"
+                    android:textColorHint="@color/userColor"
+                    android:textSize="18dp"
+                    android:background="@drawable/for_et"
+                    android:layout_marginLeft="5dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/userColor"/>
+                <EditText
+                    android:inputType="textPassword"
+
+                    android:id="@+id/registration_comfim_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint=" Повторите пороль"
+                    android:drawableLeft="@drawable/password"
+                    android:textColorHint="@color/userColor"
+                    android:textSize="18dp"
+                    android:background="@drawable/for_et"
+                    android:layout_marginLeft="5dp"
+                    />
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="55dp"
+                android:layout_marginRight="55dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/for_bt"
+                android:text="Создать"
+                android:textSize="18dp"
+                android:textColor="#ffffff"
+
+                />
 
 
 
-</android.support.constraint.ConstraintLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>
