@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="13dp"
+    android:background="#ffffff">
+
+    <ImageView
+        android:id="@+id/basket_item_image"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/image1" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:gravity="right"
+        android:orientation="vertical">
+        <ImageButton
+            android:id="@+id/basket_item_delete"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            app:srcCompat="@drawable/close_icon"
+            android:background="@drawable/for_close_bt"/>
+        <TextView
+            android:id="@+id/basket_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear deep action"
+            android:textSize="19dp"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/basket_item_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2000tg"
+            android:textSize="19dp"
+            android:textColor="#000000"/>
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:background="@drawable/for_change_bt"
+            android:orientation="horizontal"
+            android:weightSum="3">
+            <Button
+                android:id="@+id/basket_item_down"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:text="-"
+                android:textSize="15dp"
+                android:background="@drawable/for_change_bt"
+                />
+            <TextView
+                android:id="@+id/basket_item_count"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:text="1"
+                android:gravity="center"/>
+            <Button
+                android:id="@+id/basket_item_up"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:text="+"
+                android:textSize="15dp"
+                android:background="@drawable/for_change_bt"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
