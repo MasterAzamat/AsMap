@@ -3,6 +3,8 @@ package com.example.azaat.asmap;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,10 +19,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CursorAdapter;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -83,28 +87,28 @@ public class HomeFragment extends Fragment {
             }
         }, 100, 2000);
         addDots(0);
-        int []list_image = {R.drawable.image1,R.drawable.image2,R.drawable.image3,R.drawable.image3};
+        int []list_image = {R.drawable.image1,R.drawable.image2,R.drawable.image3,R.drawable.image4};
+        DBHelper dbHelper = new DBHelper(getActivity());
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.query("mytable",new String[]{"_id","image"},null,null,null,null,null);
+        CursorAdapter cursorAdapter = new SimpleCursorAdapter(getActivity(), R.layout.card_item, cursor,new String[]{"image"},new int[]{R.id.home_item_image});
 
-        ListView gridView = (ListView) view.findViewById(R.id.home_list);
-        ArrayList<Map<String,Object>> arr = new ArrayList<>();
-        Map<String,Object> m;
-        for(int  i = 0;i < list_image.length;i++){
-            m = new HashMap<>();
-            m.put("IMAGE",list_image[i]);
-            arr.add(m);
-        }
-        String []from = {"IMAGE"};
-        int []to = {R.id.home_item_image};
 
-        SimpleAdapter adapter = new SimpleAdapter(getActivity(),arr,R.layout.card_item,from,to);
-        gridView.setAdapter(adapter);
+        GridView gridView = (GridView) view.findViewById(R.id.home_list);
+
+        //GridAdapter adapter = new GridAdapter(getActivity(),list_image);
+        gridView.setAdapter(cursorAdapter);
 
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.frame_con,new CardFragment());
+                CardFragment cardFragment = new CardFragment();
+                Bundle bundle=new Bundle();
+                bundle.putLong("message",l);
+                cardFragment.setArguments(bundle);
+                fragmentTransaction.replace(R.id.frame_con,cardFragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }

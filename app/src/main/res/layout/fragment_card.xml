@@ -52,6 +52,7 @@
                 android:orientation="vertical"
                 android:layout_marginBottom="10dp">
                 <TextView
+                    android:id="@+id/card_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -59,12 +60,14 @@
                     android:textSize="20dp"
                     android:textColor="#000000"/>
                 <TextView
+                    android:id="@+id/card_des"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Очищающий крем для чувствительной кожи глубокого действия"
                     android:textSize="18dp"/>
                 <TextView
+                    android:id="@+id/card_price"
                     android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -121,6 +124,7 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/to_basket"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="55dp"

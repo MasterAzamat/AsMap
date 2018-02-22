@@ -1,8 +1,14 @@
 package com.example.azaat.asmap;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,6 +28,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -32,6 +39,8 @@ public class CardFragment extends Fragment  implements View.OnClickListener{
     public CardFragment() {
         // Required empty public constructor
     }
+    private long FRAGMENT_ID;
+
     String NAME = "cardFragment",LOG = "myLogs";
 
     SliderAdapter sliderAdapter;
@@ -40,10 +49,15 @@ public class CardFragment extends Fragment  implements View.OnClickListener{
 
     TextView []dots;
     int currentPage;
-    Button bt1,bt2,bt3;
-    Timer timer;
+    Button bt1,bt2,bt3,addBasket;
+
+    TextView card_title,card_des,card_price;
 
     int currentButton;
+
+    DBHelper dbHelper;
+    SQLiteDatabase db;
+    Cursor cursor;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
@@ -57,9 +71,23 @@ public class CardFragment extends Fragment  implements View.OnClickListener{
         bt1 = (Button) view.findViewById(R.id.bt_tab_1);
         bt2 = (Button) view.findViewById(R.id.bt_tab_2);
         bt3 = (Button) view.findViewById(R.id.bt_tab_3);
+        addBasket = (Button) view.findViewById(R.id.to_basket);
+        addBasket.setOnClickListener(this);
         bt1.setOnClickListener(this);
         bt3.setOnClickListener(this);
         bt2.setOnClickListener(this);
+        card_title = (TextView) view.findViewById(R.id.card_title);
+        card_des = (TextView) view.findViewById(R.id.card_des);
+        card_price = (TextView) view.findViewById(R.id.card_price);
+        dbHelper = new DBHelper(getActivity());
+        db = dbHelper.getWritableDatabase();
+        FRAGMENT_ID = getArguments().getLong("message",1);
+        cursor = db.query("mytable",new String[]{"_id","image","name","des","price"},"_id = ?",new String[]{""+FRAGMENT_ID},null,null,null);
+        if(cursor.moveToFirst()){
+            card_title.setText(cursor.getString(cursor.getColumnIndex("name")));
+            card_des.setText(cursor.getString(cursor.getColumnIndex("des")));
+            card_price.setText(cursor.getString(cursor.getColumnIndex("price")));
+        }
 
         currentButton = 1;
         bt1.setTextColor(getResources().getColor(R.color.whiteColor));
@@ -154,8 +182,36 @@ public class CardFragment extends Fragment  implements View.OnClickListener{
                 bt3.setTextColor(getResources().getColor(R.color.whiteColor));
                 bt3.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 break;
+            case R.id.to_basket:
+                showDialog();
+                break;
         }
         fragmentTransaction.commit();
+    }
+    public void showDialog(){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("image",cursor.getString(cursor.getColumnIndex("image")));
+        contentValues.put("name",cursor.getString(cursor.getColumnIndex("name")));
+        contentValues.put("des",cursor.getString(cursor.getColumnIndex("des")));
+        contentValues.put("price",cursor.getString(cursor.getColumnIndex("price")));
+        contentValues.put("count",1);
+        db.insert("basket",null,contentValues);
+        AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+        builder.setCancelable(true);
+        builder.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+        builder.setNegativeButton("В корзину",new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                Toast.makeText(getActivity(), "В корзину", Toast.LENGTH_SHORT).show();
+                dialog.cancel();
+            }
+        });
+        builder.setTitle("Добавлено в корзину!");
+        AlertDialog dialog=builder.create();
+        dialog.show();
     }
     @Override
     public void onAttach(Context context) {
@@ -207,6 +263,7 @@ public class CardFragment extends Fragment  implements View.OnClickListener{
 
     @Override
     public void onDestroy() {
+        db.close();
         super.onDestroy();
         Log.d(LOG,NAME + " onDestroy");
 

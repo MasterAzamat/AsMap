@@ -9,8 +9,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,6 +58,12 @@ public class HistoryFragment extends Fragment {
         SimpleAdapter adapter = new SimpleAdapter(getActivity(),arr,R.layout.history_list_item,from,to);
         list.setAdapter(adapter);
 
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getActivity(), "aaaaaaaa", Toast.LENGTH_SHORT).show();
+            }
+        });
         return view;
     }
     @Override

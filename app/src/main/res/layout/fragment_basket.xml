@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.azaat.asmap.BasketFragment"
     android:orientation="vertical"
-    android:weightSum="2">
+    android:weightSum="12">
 
     <!-- TODO: Update blank fragment layout -->
     <android.support.v7.widget.Toolbar
@@ -48,39 +48,50 @@
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.Toolbar>
 
-    <ListView
-        android:layout_margin="5dp"
-        android:id="@+id/basket_list"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:weightSum="10">
+        <fragment
+            android:name="com.example.azaat.asmap.ListFragmentForBasket"
+            android:layout_weight="10"
+            android:layout_margin="5dp"
+            android:id="@+id/fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@layout/layout_for_list_fragment"
+            />
+        <LinearLayout
+            android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        >
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Общая стоймось 2000тг"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:textColor="#000000"/>
+        <Button
+            android:id="@+id/ofOrder"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/for_bt"
+            android:text="Оформить заказ"
+            android:textSize="15dp"
+            android:textColor="#ffffff"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    </LinearLayout>
 
-    <!--<LinearLayout-->
-        <!--android:layout_weight="1"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:weightSum="2"-->
-        <!--android:gravity="center"-->
-        <!--&gt;-->
-        <!--<TextView-->
-            <!--android:layout_marginLeft="20dp"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Общая стоймось 2000тг"-->
-            <!--android:layout_weight="1"-->
-            <!--android:gravity="center"-->
-            <!--android:textSize="18dp"-->
-            <!--android:textColor="#000000"/>-->
-        <!--<Button-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="40dp"-->
-            <!--android:background="@drawable/for_bt"-->
-            <!--android:text="Оформить заказ"-->
-            <!--android:textSize="15dp"-->
-            <!--android:textColor="#ffffff"-->
-            <!--android:layout_weight="1"/>-->
-    <!--</LinearLayout>-->
+
+
 
 
 </LinearLayout>
